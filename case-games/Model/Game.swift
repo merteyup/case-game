@@ -8,10 +8,12 @@
 import Foundation
 
 
-struct Games : Codable {
+struct Game : Codable {
     
     let id: Int
     let name: String
- 
+    let background_image: String
+    let metacritic: Int
+    let genres: [Genre]
     
 }

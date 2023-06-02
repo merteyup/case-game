@@ -19,7 +19,6 @@ final class Service {
     enum ServiceError: Error {
         case failedToCreateRequest
         case failedToGetData
-
     }
     
     /// Send APi Call

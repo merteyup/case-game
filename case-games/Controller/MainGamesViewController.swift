@@ -14,7 +14,7 @@ class MainGamesViewController: UIViewController {
     
     // MARK: - Variables
 
-    var allLoadedGames = [Games]()
+    var allLoadedGames = [Game]()
     
     // MARK: - Statements
  
@@ -31,12 +31,11 @@ class MainGamesViewController: UIViewController {
     
     /// Function that brings current games and show on table view.
     fileprivate func getAllGames() {
+        /// Use api service to get accessible games.
         Service.shared.execute(.listGamesRequest, expecting: GetAllGamesResponse.self) { result in
             switch result {
             case .success(let model):
-                print(String(describing: model.results[0].name))
                 self.allLoadedGames = model.results
-                
             case .failure(let error):
                 print(String(describing: error))
             }
@@ -57,12 +56,13 @@ extension MainGamesViewController: UITableViewDelegate, UITableViewDataSource {
     
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MainGamesTableViewCellID") as! MainGamesTableViewCell
         
-        cell.lblGameName.text = allLoadedGames[indexPath.row].name
+        let cell = tableView.dequeueReusableCell(withIdentifier: "MainGamesTableViewCellID") as! MainGamesTableViewCell
+       
+        let game = allLoadedGames[indexPath.row]
+        cell.updateCell(currentGame: game)
         
         return cell
     }
-    
     
 }

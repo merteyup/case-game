@@ -1,5 +1,5 @@
 //
-//  GetAllGamesResponse.swift
+//  Genre.swift
 //  case-games
 //
 //  Created by Eyüp Mert on 2.06.2023.
@@ -7,9 +7,9 @@
 
 import Foundation
 
-
-struct GetAllGamesResponse: Codable {
+struct Genre: Codable {
     
-    let results: [Game]
+    let id: Int
+    let name: String
     
 }

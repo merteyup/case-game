@@ -37,7 +37,6 @@ final class Request {
                 string += "/\($0)"
             })
         }
-        
 
         queryParameters = [URLQueryItem(name: QueryParameters.key.rawValue, value: Constants.apiKey),
                            URLQueryItem(name: QueryParameters.page_size.rawValue, value: "10"),
