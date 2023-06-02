@@ -165,6 +165,9 @@
                                                 <constraint firstItem="5LG-uL-L2J" firstAttribute="leading" secondItem="Dgc-V1-tbx" secondAttribute="trailing" constant="8" symbolic="YES" id="zrl-7g-NaT"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="lblGameName" destination="5Ec-LA-rns" id="6eR-AP-D1e"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>
