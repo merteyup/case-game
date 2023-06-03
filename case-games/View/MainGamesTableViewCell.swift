@@ -10,13 +10,13 @@ import UIKit
 class MainGamesTableViewCell: UITableViewCell {
     
     // MARK: - Outlets
-    
     @IBOutlet weak var lblGameName: UILabel!
     @IBOutlet weak var imgGame: UIImageView!
     @IBOutlet weak var lblMetaCritic: UILabel!
     @IBOutlet weak var lblMetaCriticScore: UILabel!
     @IBOutlet weak var lblGenres: UILabel!
     
+    // MARK: - Statements
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -25,6 +25,18 @@ class MainGamesTableViewCell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         
+    }
+    
+    
+    // MARK: - Functions
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        /// Clear table view cell for reusable purpose.
+        lblGameName.text = nil
+        lblGenres.text = nil
+        lblMetaCriticScore.text = nil
+        imgGame.image = nil
     }
     
     /// Update cell with current game's information

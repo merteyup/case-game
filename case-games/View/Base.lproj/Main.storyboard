@@ -13,7 +13,7 @@
         <scene sceneID="2SH-m1-TeV">
             <objects>
                 <navigationController id="nxn-l6-aSn" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Favorites" id="4Pu-KK-Sw7"/>
+                    <tabBarItem key="tabBarItem" title="Favorites" image="star" id="4Pu-KK-Sw7"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="zzj-CO-KeC">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -66,7 +66,7 @@
         <scene sceneID="xxs-1m-rpT">
             <objects>
                 <navigationController id="DpM-UP-6aD" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Games" id="JVr-Nl-yBX"/>
+                    <tabBarItem key="tabBarItem" title="Games" image="game" id="JVr-Nl-yBX"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="bKs-p0-3w4">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -87,8 +87,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <searchBar contentMode="redraw" placeholder="Search for the games" translatesAutoresizingMaskIntoConstraints="NO" id="Qnu-lp-Olg">
+                                <rect key="frame" x="0.0" y="103" width="393" height="56"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="393" id="6f9-4V-PNB"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="xqa-RD-brw"/>
+                                </constraints>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="fCm-eV-EVC" id="DoV-85-ZCC"/>
+                                </connections>
+                            </searchBar>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ek3-rI-ZXq">
-                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
+                                <rect key="frame" x="0.0" y="159" width="393" height="610"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MainGamesTableViewCellID" rowHeight="143" id="rEe-m8-lBY" customClass="MainGamesTableViewCell" customModule="case_games" customModuleProvider="target">
@@ -182,16 +193,20 @@
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="uUP-yI-bNe"/>
-                        <color key="backgroundColor" systemColor="systemBrownColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstItem="Qnu-lp-Olg" firstAttribute="leading" secondItem="uUP-yI-bNe" secondAttribute="leading" id="0iS-JS-ANe"/>
+                            <constraint firstItem="Qnu-lp-Olg" firstAttribute="trailing" secondItem="uUP-yI-bNe" secondAttribute="trailing" id="1nb-w5-qjz"/>
                             <constraint firstItem="uUP-yI-bNe" firstAttribute="bottom" secondItem="ek3-rI-ZXq" secondAttribute="bottom" id="7Eh-Le-bH6"/>
                             <constraint firstItem="uUP-yI-bNe" firstAttribute="trailing" secondItem="ek3-rI-ZXq" secondAttribute="trailing" id="CdL-kH-IR4"/>
                             <constraint firstItem="ek3-rI-ZXq" firstAttribute="leading" secondItem="uUP-yI-bNe" secondAttribute="leading" id="cxr-gy-CIM"/>
-                            <constraint firstItem="ek3-rI-ZXq" firstAttribute="top" secondItem="uUP-yI-bNe" secondAttribute="top" id="i6A-Nj-DSO"/>
+                            <constraint firstItem="ek3-rI-ZXq" firstAttribute="top" secondItem="Qnu-lp-Olg" secondAttribute="bottom" id="frp-1b-jxF"/>
+                            <constraint firstItem="Qnu-lp-Olg" firstAttribute="top" secondItem="uUP-yI-bNe" secondAttribute="top" id="wgD-1z-jIk"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Games" id="hn5-CC-0Sf"/>
                     <connections>
+                        <outlet property="searchBar" destination="Qnu-lp-Olg" id="R70-Se-FIE"/>
                         <outlet property="tableView" destination="ek3-rI-ZXq" id="NFM-EC-iwK"/>
                         <segue destination="AV2-Kt-kYo" kind="show" identifier="openGameDetails" id="ttO-Pr-Mds"/>
                     </connections>
@@ -237,14 +252,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="game" width="42" height="28"/>
+        <image name="star" width="27.333333969116211" height="26"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemBrownColor">
-            <color red="0.63529411764705879" green="0.51764705882352946" blue="0.36862745098039218" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
