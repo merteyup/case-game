@@ -10,6 +10,8 @@ import UIKit
 class MainGamesTableViewCell: UITableViewCell {
     
     // MARK: - Outlets
+    
+    @IBOutlet weak var backgroundCell: UIView!
     @IBOutlet weak var lblGameName: UILabel!
     @IBOutlet weak var imgGame: UIImageView!
     @IBOutlet weak var lblMetaCritic: UILabel!
@@ -37,11 +39,16 @@ class MainGamesTableViewCell: UITableViewCell {
         lblGenres.text = nil
         lblMetaCriticScore.text = nil
         imgGame.image = nil
+        backgroundCell.backgroundColor = UIColor(named: "systemBackground")
     }
     
     /// Update cell with current game's information
     /// - Parameter currentGame: Game which is in the cell currently.
     func updateCell(currentGame: Game) {
+        
+        if currentGame.isViewed != nil && currentGame.isViewed == true {
+            backgroundCell.backgroundColor = UIColor(named: "listTapColor")
+        }
         
         /// Fill labels with current game informations.
         lblGameName.text = currentGame.name

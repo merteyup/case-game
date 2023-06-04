@@ -21,6 +21,13 @@ class MainGamesViewController: UIViewController {
     
     
     // MARK: - Statements
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        /// Reload table view and show tapped content's background color different than initial state.
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,7 +36,6 @@ class MainGamesViewController: UIViewController {
         self.hideKeyboardWhenTappedAround()
 
         getGames()
-        
     }
     
     // MARK: - Functions
@@ -112,6 +118,13 @@ extension MainGamesViewController: UITableViewDelegate, UITableViewDataSource {
                 getAdditionalGames(url: url)
             }
         }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        /// Set tapped content as a viewed.
+        filteredGames[indexPath.row].isViewed = true
+        /// Perform segue to the detail page.
+        performSegue(withIdentifier: "openGameDetails", sender: nil)
     }
     
 }

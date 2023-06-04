@@ -7,8 +7,6 @@
 
 import Foundation
 
-public var currentPage = 1
-
 /// Object that represent single api call
 final class Request {
     

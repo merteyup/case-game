@@ -15,5 +15,6 @@ struct Game : Codable {
     let background_image: String
     let metacritic: Int?
     let genres: [Genre]
+    var isViewed: Bool?
     
 }
