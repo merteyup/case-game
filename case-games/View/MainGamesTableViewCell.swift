@@ -45,7 +45,9 @@ class MainGamesTableViewCell: UITableViewCell {
         
         /// Fill labels with current game informations.
         lblGameName.text = currentGame.name
-        lblMetaCriticScore.text = String(currentGame.metacritic)
+        if let metacriticScore = currentGame.metacritic {
+            lblMetaCriticScore.text = String(metacriticScore)
+        }
         lblMetaCritic.text = "metacritic: "
         
         /// Check is current game has single or multiple genre and act accordingly.
@@ -64,7 +66,7 @@ class MainGamesTableViewCell: UITableViewCell {
         /// Load image with extension and use it in image view. Could be done with Alamofire or SDWebImage pods.
         UIImage.loadFrom(url: url) { image in
             self.imgGame.image = image
-        }
+        } 
     }
     
 }

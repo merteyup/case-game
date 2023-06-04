@@ -33,9 +33,10 @@ final class Service {
     ) {
         guard let urlRequest = self.request(from: request) else {
             completion(.failure(ServiceError.failedToCreateRequest))
-            
             return
         }
+        print("URLRequest: \(urlRequest)")
+
         let task = URLSession.shared.dataTask(with: urlRequest) { data, response, error in
             
             guard let data = data, error == nil else {
@@ -44,6 +45,7 @@ final class Service {
             }
             // Decode response
             do {
+
                 let result = try JSONDecoder().decode(type.self, from: data)
                 completion(.success(result))
 
@@ -64,7 +66,6 @@ final class Service {
         guard let url = request.url else {return nil}
         var request = URLRequest(url: url)
         request.httpMethod = request.httpMethod
-        
         return request
     }
     
