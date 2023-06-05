@@ -7,7 +7,17 @@
 
 import UIKit
 
+protocol GameDetailsRedditTableViewCellDelegate : AnyObject {
+    
+    func redditAction()
+    
+}
+
 class GameDetailsRedditTableViewCell: UITableViewCell {
+    
+    // MARK: - Variables
+    
+    weak var gameDetailsRedditTableViewCellDelegate : GameDetailsRedditTableViewCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,6 +32,7 @@ class GameDetailsRedditTableViewCell: UITableViewCell {
     // MARK: - IBActions
 
     @IBAction func visitRedditPressed(_ sender: Any) {
+        gameDetailsRedditTableViewCellDelegate?.redditAction()
     }
     
     

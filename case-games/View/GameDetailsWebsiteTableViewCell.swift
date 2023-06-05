@@ -7,7 +7,18 @@
 
 import UIKit
 
+protocol GameDetailsWebsiteTableViewCellDelegate : AnyObject {
+    
+    func websiteAction()
+    
+}
+
 class GameDetailsWebsiteTableViewCell: UITableViewCell {
+    
+    // MARK: - Variables
+    
+    weak var gameDetailsWebsiteTableViewCellDelegate : GameDetailsWebsiteTableViewCellDelegate?
+
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,6 +34,7 @@ class GameDetailsWebsiteTableViewCell: UITableViewCell {
     // MARK: - IBActions
     
     @IBAction func visitWebsitePressed(_ sender: Any) {
+        gameDetailsWebsiteTableViewCellDelegate?.websiteAction()
     }
     
 

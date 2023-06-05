@@ -18,7 +18,7 @@ class MainGamesViewController: UIViewController {
     private var filteredGames = [Game]()
     private var apiNextPage : String?
     private var isSearching = false
-    
+
     
     // MARK: - Statements
     override func viewWillAppear(_ animated: Bool) {
@@ -82,10 +82,23 @@ class MainGamesViewController: UIViewController {
                 self.tableView.reloadData()
             }
         }
-        
     }
     
     
+    /// Prepare next screen with game id
+    /// - Parameters:
+    ///   - segue: Segue to the details view controller
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        /// Check is segue designed for details view controller
+        if segue.identifier == "openGameDetails", let destination = segue.destination as? GameDetailsViewController {
+            /// Get current cell index for set selected game id
+            if let cell = sender as? MainGamesTableViewCell, let indexPath = tableView.indexPath(for: cell) {
+                var gameId = filteredGames[indexPath.row].id
+                /// Set destination's current game id.
+                destination.currentGameId = gameId
+            }
+        }
+    }
 }
 
 
@@ -123,9 +136,9 @@ extension MainGamesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         /// Set tapped content as a viewed.
         filteredGames[indexPath.row].isViewed = true
-        /// Perform segue to the detail page.
-        performSegue(withIdentifier: "openGameDetails", sender: nil)
     }
+    
+   
     
 }
 

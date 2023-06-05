@@ -14,6 +14,5 @@ class MainFavoritesViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
 
     }
-    
 
 }

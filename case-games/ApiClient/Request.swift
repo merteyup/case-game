@@ -36,9 +36,7 @@ final class Request {
                 string += "/\($0)"
             })
         }
-        
-    
-        
+                
         if !queryParameters.isEmpty {
             string += "?"
             let argumentString = queryParameters.compactMap({
@@ -82,6 +80,7 @@ final class Request {
         if !string.contains(Constants.baseUrl) {
             return nil
         }
+        
         let trimmed = string.replacingOccurrences(of: Constants.baseUrl+"/", with: "")
         
         if trimmed.contains("/") {
@@ -115,8 +114,29 @@ final class Request {
             }
         }
         return nil
+    }
+    
+    convenience init?(gameId: String) {
+        var stringUrl = Constants.baseUrl
+
+        if let endpoint = Endpoint(rawValue: "games") {
+            self.init(endpoint: endpoint,pathComponents: [gameId], queryParameters: [URLQueryItem(name: QueryParameters.key.rawValue, value: Constants.apiKey)])
+            return
+        }
+
+        
+        
+        return nil
+
+
+        
+        
+      
+
         
     }
+    
+   
     
     
 }
