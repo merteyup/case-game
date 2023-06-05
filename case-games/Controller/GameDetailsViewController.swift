@@ -31,14 +31,13 @@ class GameDetailsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.tabBarController?.tabBar.isHidden = true
     }
     
     // MARK: - Functions
     
     fileprivate func getSingleGameDetail(gameId: Int) {
-             
+        /// Create request with current game id.
         guard let request = Request(gameId: String(gameId)) else {
             return
         }
@@ -46,6 +45,7 @@ class GameDetailsViewController: UIViewController {
                                expecting: GameDetail.self) { result in
             switch result {
             case .success(let success):
+                /// Set current game detail with successfully requested information.
                 self.currentGameDetail = success
             case .failure(let failure):
                 print(failure)
@@ -56,11 +56,17 @@ class GameDetailsViewController: UIViewController {
         }
     }
     
+    // MARK: - Actions
+    
+    
+    @IBAction func favoritePressed(_ sender: Any) {
+        /// Save favorite or delete.
+    }
+    
 }
 
 
 extension GameDetailsViewController : UITableViewDelegate, UITableViewDataSource {
-    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -72,6 +78,7 @@ extension GameDetailsViewController : UITableViewDelegate, UITableViewDataSource
         
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "GameDetailsImageTableViewCellID") as! GameDetailsImageTableViewCell
+            /// Set current game's image and name
             if let currentGameDetail = currentGameDetail {
                 cell.lblGameName.text = currentGameDetail.name
                 if let url = currentGameDetail.background_image {
@@ -83,9 +90,10 @@ extension GameDetailsViewController : UITableViewDelegate, UITableViewDataSource
             return cell
         } else if indexPath.row == 1 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "GameDetailsDescriptionTableViewCellID") as! GameDetailsDescriptionTableViewCell
+            /// Set current game's description
             cell.lblGameDescriptionHeader.text = "Game Description"
             if let currentGameDetail = currentGameDetail {
-                cell.lblGameDescription.text = currentGameDetail.description
+                cell.lblGameDescription.text = currentGameDetail.description_raw
             }
             return cell
         } else if indexPath.row == 2 {
@@ -99,6 +107,8 @@ extension GameDetailsViewController : UITableViewDelegate, UITableViewDataSource
         }
         
     }
+    
+    
     
 }
 

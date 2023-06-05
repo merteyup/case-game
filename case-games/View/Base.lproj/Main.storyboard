@@ -391,7 +391,13 @@
                             <constraint firstItem="kSe-Cy-2Vw" firstAttribute="trailing" secondItem="QMx-8H-r1b" secondAttribute="trailing" id="haG-ht-n2m"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="cFw-Mr-AVx"/>
+                    <navigationItem key="navigationItem" id="cFw-Mr-AVx">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="Tl8-Qz-H3N">
+                            <connections>
+                                <action selector="favoritePressed:" destination="AV2-Kt-kYo" id="Mn7-Ll-06G"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="QMx-8H-r1b" id="FKp-1f-7Y2"/>
                     </connections>
